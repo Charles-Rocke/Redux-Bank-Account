@@ -1,4 +1,5 @@
 // Learn redux in isolation
+import { createStore } from "redux";
 const initialState = {
   balance: 0,
   loan: 0,
@@ -14,7 +15,12 @@ function reducer(state = initialState, action) {
     case "account/requestLoan":
       if (state.loan > 0) return;
       // if
-      return { ...state, loan: action.payload };
+      return {
+        ...state,
+        loan: action.payload.amount,
+        loanPurpose: action.payload.loanPurpose,
+        balance: state.balance + action.payload.amount,
+      };
     case "account/payLoan":
       return {
         ...state,
@@ -27,3 +33,26 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+
+// create redux store
+const store = createStore(reducer);
+
+// dispatch actions from store
+store.dispatch({ type: "account/deposit", payload: 500 });
+
+console.log(store.getState());
+store.dispatch({ type: "account/withdraw", payload: 200 });
+
+console.log(store.getState());
+
+store.dispatch({
+  type: "account/requestLoan",
+  payload: {
+    amount: 1000,
+    loanPurpose: "Buy Tailwind",
+  },
+});
+console.log(store.getState());
+
+store.dispatch({ type: "account/payLoan" });
+console.log(store.getState());

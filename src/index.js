@@ -4,7 +4,10 @@ import "./index.css";
 import App from "./App";
 
 // run code that is in the store.js file
-import "./store";
+import store from "./store";
+
+store.dispatch({ type: "account/deposit", payload: 350000 });
+console.log(store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

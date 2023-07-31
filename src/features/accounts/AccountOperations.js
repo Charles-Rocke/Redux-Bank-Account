@@ -27,7 +27,7 @@ function AccountOperations() {
     dispatch(deposit(depositAmount, currency));
     // reset this components state
     setDepositAmount("");
-    setCurrency("");
+    setCurrency("USD");
   }
 
   function handleWithdrawal() {

@@ -24,7 +24,8 @@ function AccountOperations() {
     if (!depositAmount) return;
 
     // deposit function from deposit function from ./accountSlice
-    dispatch(deposit(depositAmount, currency));
+    // dispatch(deposit(depositAmount, currency));
+    dispatch(deposit(depositAmount));
     // reset this components state
     setDepositAmount("");
     setCurrency("USD");
@@ -108,7 +109,7 @@ function AccountOperations() {
         {currentLoan > 0 && (
           <div>
             <span>
-              Pay back ${currentLoan}(`Reason: ${currentLoanPurpose}`)
+              Pay back ${currentLoan} ({currentLoanPurpose})
             </span>
             <button onClick={handlePayLoan}>Pay loan</button>
           </div>

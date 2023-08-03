@@ -24,8 +24,7 @@ function AccountOperations() {
     if (!depositAmount) return;
 
     // deposit function from deposit function from ./accountSlice
-    // dispatch(deposit(depositAmount, currency));
-    dispatch(deposit(depositAmount));
+    dispatch(deposit(depositAmount, currency));
     // reset this components state
     setDepositAmount("");
     setCurrency("USD");
